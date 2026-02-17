@@ -50,71 +50,59 @@
 % ---- 1. LEARNING OBJECTIVES ----
 \section{Learning Objectives}
 
-\begin{enumerate}
-    \item Measure wave speed along a string by creating standing waves at different frequencies.
-    \item Use a sine wave generator to drive two strings (green and orange) at various frequencies.
-    \item Identify resonant modes: the frequencies where the string vibrates in a clean, stable pattern with clear nodes and antinodes.
-    \item Compute wave speed from resonant frequencies and compare with the theoretical value $V = \sqrt{F_T/\mu}$ (tension and linear mass density).
-    \item Verify that the wave equation predicts wave speed correctly by comparing measured and theoretical speeds.
-\end{enumerate}
+The purpose of this lab was to measure wave speed along a string by creating standing waves at different frequencies using a sine wave generator. We worked with two strings (a thin green one and a thicker orange one), driving each at a range of frequencies to identify the resonant modes---the frequencies where the string settles into a clean, stable pattern with well-defined nodes and antinodes. From these resonant frequencies, we computed the wave speed and compared it against the theoretical prediction $V = \sqrt{F_T/\mu}$, which comes from the string's tension and linear mass density.
 
-\textbf{Lab roles:} Sean recorded nodes; Abhiraj operated the sine wave generator; Erick recorded the data in his spreadsheet; Brandon assisted throughout.
+We split the work as follows: I (Sean) counted nodes along the string, Abhiraj operated the sine wave generator and dialed in frequencies, Erick recorded all frequency and mode data in his spreadsheet, and Brandon assisted with setup and verification throughout.
 
 % ---- 2. MAIN CONCEPTS ----
 \section{Main Concepts and Formulae}
 
-Standing waves on a string fixed at both ends form when the string is driven at certain frequencies: forward and reflected waves combine to give nodes (points that stay still) and antinodes (points that move the most).
+Standing waves form on a string fixed at both ends when it is moved at the right frequency. The forward wave reflects off the far end and combines with the incoming wave, and at certain frequencies the two line up to produce nodes (points of zero displacement) and antinodes (points of maximum displacement). These special frequencies are the resonant frequencies.
 
 \subsection{Wave Speed on a String}
 
-Wave speed depends on tension $F_T$ and linear mass density $\mu = m/L$. The wave equation gives
+The speed of a transverse wave on a string depends on the tension $F_T$ and the linear mass density $\mu = m/L$. The wave equation governing this is
 
 \begin{equation}
     \mu \frac{\partial^2 y}{\partial t^2} = F_T \frac{\partial^2 y}{\partial x^2}
 \end{equation}
 
-The wave travels at a speed given by:
+from which the wave speed follows:
 
 \begin{equation}
     |v|^2 = \frac{F_T}{\mu} \quad \implies \quad |v| = \sqrt{\frac{F_T}{\mu}}
 \end{equation}
 
-with $F_T = mg$ from the hanging mass.
+In our setup, the tension comes from a mass hanging off the string, so $F_T = mg$.
 
 \subsection{Resonant Frequencies and Standing Wave Modes}
 
-For the $n$-th mode, $n$ half-wavelengths fit in length $L$, so
+For the $n$-th mode, $n$ half-wavelengths fit within the vibrating length $L$, giving
 
 \begin{equation}
     \lambda_n = \frac{2L}{n}, \quad n = 1, 2, 3, \ldots
 \end{equation}
 
-Since speed equals frequency times wavelength, the wave speed is:
+Since we know speed equals frequency times wavelength, the wave speed for each mode is
 
 \begin{equation}
     |v_n| = f_n \cdot \lambda_n = f_n \cdot \frac{2L}{n}
 \end{equation}
 
-So $|v_n| = f_n \lambda_n$ is the same $V$ for all modes; plotting $f_n$ vs.\ $n$ gives a line with slope $V/(2L)$.
+This value should be the same regardless of mode number, since the wave speed is a property of the string, not the frequency. As a result, plotting $f_n$ vs.\ $n$ should yield a straight line whose slope equals $V/(2L)$.
 
 % ---- 3. PROCEDURE ----
 \section{Procedure}
 
-\begin{enumerate}
-    \item \textbf{Set up the apparatus.}
-    \begin{itemize}
-        \item Attach the string at one end to the sine wave generator (driven end), run it over a pulley, and hang a mass from the other end so that the tension is $F_T = mg$.
-        \item Adjust the generator frequency to drive the string. Measure the effective vibrating length from the generator end to the pulley. We used $L_{\text{eff}} = 2.352$ m for both strings.
-    \end{itemize}
+The setup was straightforward. One end of the string attaches to the sine wave generator, which shakes it back and forth. The string runs across the table, over a pulley, and a hanging mass on the other side provides the tension. The effective vibrating length---from the generator to the pulley---was $L_{\text{eff}} = 2.352$ m for both strings.
 
-    \item \textbf{Choose the strings to test.}
-    \begin{itemize}
-        \item \textbf{Green string:} Total length $= 2.982$ m, string mass $= 0.00280$ kg, hanging mass $= 0.500$ kg ($F_T = 4.91$ N).
-        \item \textbf{Orange string:} Total length $= 3.01$ m, string mass $= 0.01803$ kg, hanging mass $= 1.000$ kg ($F_T = 9.81$ N).
-    \end{itemize}
+We tested two strings with different properties:
 
-    \item \textbf{Find resonant modes for each string.} With Abhiraj adjusting the sine wave generator, increase the frequency until a clean standing wave appears; Sean counted nodes while Erick recorded $f_n$ and $n$ in the spreadsheet. Repeat for as many modes as possible ($n = 2$ up to $n = 7$ or $8$). Cross-check with class data on the board; $\mu_{\text{avg}} = 9.52 \times 10^{-4}$ kg/m was reported for the green string.
-\end{enumerate}
+\textbf{Green string:} Total length 2.982 m, string mass 0.00280 kg, hanging mass 0.500 kg ($F_T = 4.91$ N). This was the lighter of the two.
+
+\textbf{Orange string:} Total length 3.01 m, string mass 0.01803 kg, hanging mass 1.000 kg ($F_T = 9.81$ N). Heavier string with more tension.
+
+For each string, Abhiraj gradually increased the generator frequency until a clean standing wave pattern appeared. Resonance is fairly easy to identify visually---the string transitions from vibrating somewhat randomly to settling into a well-defined pattern with clear, stationary nodes. I counted the nodes while Erick recorded the frequency $f_n$ and mode number $n$. We repeated this for as many modes as we could reliably identify ($n = 2$ through $n = 7$ or $8$), and cross-checked our values against the class data on the board. The class average for the green string's linear density was $\mu_{\text{avg}} = 9.52 \times 10^{-4}$ kg/m.
 
 % ---- 4. EXPERIMENTAL DATA ----
 \section{Experimental Data and Graphical Analysis}
@@ -138,6 +126,8 @@ So $|v_n| = f_n \lambda_n$ is the same $V$ for all modes; plotting $f_n$ vs.\ $n
         \bottomrule
     \end{tabular}
 \end{table}
+
+The wave speed values show some scatter across modes. The $n = 7$ reading came in noticeably high at 83.6 m/s, likely because at higher modes the nodes are packed closer together and it becomes harder to determine the exact resonant frequency. This is discussed further in the error analysis.
 
 \begin{figure}[H]
     \centering
@@ -173,6 +163,8 @@ So $|v_n| = f_n \lambda_n$ is the same $V$ for all modes; plotting $f_n$ vs.\ $n
     \end{tabular}
 \end{table}
 
+The orange string data is noticeably tighter than the green. This likely comes down to the heavier string producing more pronounced standing wave patterns under higher tension, making the resonant frequencies easier to identify with confidence. During the experiment, the transition into resonance on the orange string was more abrupt---the amplitude would increase sharply and the nodes would become very well-defined.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{fig3_orange_fn.pdf}
@@ -199,7 +191,7 @@ So $|v_n| = f_n \lambda_n$ is the same $V$ for all modes; plotting $f_n$ vs.\ $n
 % ---- SUMMARY TABLE ----
 \subsection{Summary of Results}
 
-Table~\ref{tab:summary} compares wave speed from standing-wave modes (Method 1) and from $V = \sqrt{F_T/\mu}$ (Method 2).
+Table~\ref{tab:summary} compares the wave speed obtained from standing wave modes (Method 1) with the theoretical value from $V = \sqrt{F_T/\mu}$ (Method 2).
 
 \begin{table}[H]
     \centering
@@ -236,31 +228,31 @@ Table~\ref{tab:summary} compares wave speed from standing-wave modes (Method 1) 
 % ---- 5. CALCULATION AND ERROR ANALYSIS ----
 \section{Calculation and Error Analysis}
 
-Uncertainties are propagated following NIST SP 811 \cite{nist811}. Data are in Tables~\ref{tab:green} and~\ref{tab:orange}.
+Uncertainties are propagated following the guidelines in NIST SP 811 \cite{nist811}. Raw data is in Tables~\ref{tab:green} and~\ref{tab:orange}.
 
 \subsection{Method 1: Wave Speed from Standing Wave Modes}
 
-For the $n$-th mode, the wavelength is
+For each resonant mode $n$, the wavelength is determined by the vibrating length:
 \begin{equation}
     \lambda_n = \frac{2L_{\text{eff}}}{n}, \quad L_{\text{eff}} = 2.352\;\text{m}.
 \end{equation}
-The wave speed for that mode is (formula 2.2)
+The wave speed for that mode then follows from
 \begin{equation}
     |v_n| = f_n \cdot \lambda_n = f_n \cdot \frac{2L_{\text{eff}}}{n}.
 \end{equation}
-The average speed over $N$ measured modes is
+We measured six modes for each string and averaged the resulting speeds:
 \begin{equation}
     \overline{V}_{\text{exp}} = \frac{1}{N} \sum_{i=1}^{N} V_i.
 \end{equation}
-The standard deviation of the $V_i$ gives the uncertainty:
+The uncertainty comes from the standard deviation across those six values:
 \begin{equation}
     \sigma_V = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (V_i - \overline{V})^2}.
 \end{equation}
-From Tables~\ref{tab:green} and~\ref{tab:orange}: $\overline{V}_{\text{green}} = 77.3 \pm 3.5$ m/s and $\overline{V}_{\text{orange}} = 42.6 \pm 1.2$ m/s.
+This gives $\overline{V}_{\text{green}} = 77.3 \pm 3.5$ m/s and $\overline{V}_{\text{orange}} = 42.6 \pm 1.2$ m/s. The larger uncertainty on the green string reflects the greater scatter in its mode-by-mode speed values.
 
 \subsection{Method 2: Wave Speed from Tension and Linear Density}
 
-The tension is the weight of the hanging mass:
+The theoretical speed uses only the physical properties of the string. The tension equals the weight of the hanging mass:
 \begin{equation}
     F_T = m_h g.
 \end{equation}
@@ -268,11 +260,11 @@ The linear mass density is
 \begin{equation}
     \mu = \frac{m_{\text{string}}}{L_{\text{string}}}.
 \end{equation}
-The theoretical wave speed (formula 9.35) is
+Substituting into the wave speed formula:
 \begin{equation}
     V_{\text{theory}} = \sqrt{\frac{F_T}{\mu}}.
 \end{equation}
-With uncertainty propagation: $V_{\text{theory,green}} = 72.3 \pm 0.1$ m/s and $V_{\text{theory,orange}} = 40.5 \pm 0.1$ m/s.
+After propagating uncertainties: $V_{\text{theory,green}} = 72.3 \pm 0.1$ m/s and $V_{\text{theory,orange}} = 40.5 \pm 0.1$ m/s. The theoretical uncertainties are small because mass and length can be measured with good precision.
 
 \subsection{Comparison of the Two Methods}
 
@@ -280,7 +272,7 @@ The difference between methods is
 \begin{equation}
     \Delta V = \left| \overline{V}_{\text{exp}} - V_{\text{theory}} \right|.
 \end{equation}
-The uncertainty in $\Delta V$ is
+with uncertainty
 \begin{equation}
     \delta(\Delta V) = \sqrt{(\delta\overline{V}_{\text{exp}})^2 + (\delta V_{\text{theory}})^2}.
 \end{equation}
@@ -288,18 +280,24 @@ The percent difference is
 \begin{equation}
     \%\,\text{diff} = \frac{\Delta V}{V_{\text{theory}}} \times 100\%.
 \end{equation}
-Results: Green $\Delta V = 5.0 \pm 3.5$ m/s ($6.9 \pm 4.8\%$); Orange $\Delta V = 2.1 \pm 1.2$ m/s ($5.2 \pm 3.0\%$). Both agree within uncertainty.
+For the green string: $\Delta V = 5.0 \pm 3.5$ m/s ($6.9 \pm 4.8\%$). For the orange: $\Delta V = 2.1 \pm 1.2$ m/s ($5.2 \pm 3.0\%$). Both results agree within their uncertainty ranges, which supports the validity of the wave speed formula.
 
 \subsection{Sources of Error}
 
-Main contributions: (1)~Method 1: subjective choice of ``best'' resonant frequency when tuning the generator. (2)~Effective length: node positions at the driven end and pulley are not sharply defined. (3)~The generator end moves slightly, so it is not a perfect node. The orange string showed less scatter than the green, likely because the heavier string gave clearer standing patterns to tune.
+The biggest problem in Method 1 was figuring out when we had actually found the resonant frequency. The generator dial is continuous, so you're slowly turning it and watching the string until the pattern looks the cleanest. There's definitely a judgment call involved, and at higher modes where the nodes are packed closer together, the differences between nearby frequencies get more subtle. This is probably what caused our $n = 7$ green string reading to be so far off from the rest.
+
+The effective length is another source of uncertainty. We measured $L_{\text{eff}}$ from the generator to the pulley, but neither end is really a perfect node. The generator end moves a little (that's how it drives the string in the first place), and the pulley has a finite width to it. So the actual vibrating length could be off by a few millimeters from what we used in the calculations.
+
+The orange string gave tighter results throughout, which we think comes down to it being heavier with more tension. The standing wave patterns on the orange string were just more visible and more defined, so it was easier to tell when we had actually hit resonance. With the green string, especially above $n = 5$ or so, it was sometimes hard to tell if we were on the right frequency or just close to it.
 
 % ============================================================
 % CONCLUSION
 % ============================================================
 \section*{Conclusion}
 
-Measured wave speeds agreed with $V = \sqrt{F_T/\mu}$ within uncertainty (green $\sim$6.9\% difference, orange $\sim$5.2\%). The $f_n$ vs.\ $n$ plots were linear as predicted, and $V_n$ showed no trend with mode number, consistent with a constant wave speed. The orange string gave tighter results than the green, likely due to clearer standing patterns and higher tension. The results support the standing-wave model and the wave-speed formula.
+Both strings produced wave speeds that agreed with the theoretical prediction from $V = \sqrt{F_T/\mu}$ within uncertainty---approximately 6.9\% difference for the green string and 5.2\% for the orange. The $f_n$ vs.\ $n$ plots were linear as expected, and the wave speed showed no systematic trend with mode number, consistent with a constant wave speed across all modes.
+
+The orange string gave tighter results throughout, which we believe is due to the heavier string and higher tension producing more distinct standing wave patterns. The main limitation of our approach was the subjective tuning of the resonant frequency; a sensor-based method for detecting peak amplitude would likely reduce the scatter significantly. That said, the agreement between our two methods is strong enough to confirm that the wave equation correctly predicts the speed of transverse waves on a string.
 
 \vspace{0.5cm}
 \noindent LaTeX source: \href{https://github.com/SRock44/physics-latex}{github.com/SRock44/physics-latex} (file \texttt{lab4/lab4.tex}).
