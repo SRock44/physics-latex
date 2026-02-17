@@ -1,0 +1,312 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\captionsetup[figure]{labelfont=bf, font=it}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{siunitx}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
+
+\title{\textbf{\LARGE Standing Waves on a String} \\ \large Measuring Wave Speed - Lab 4}
+\author{Sean Rockwitz, Brandon Salinas, Erick Puli, Abhiraj Singh}
+\date{\textit{11 February, 2026} \\ \textit{PHYS 180, Dr.\ Ray Sameshima} \\ \textit{New York Institute of Technology}}
+
+\begin{document}
+
+% ============================================================
+% TITLE PAGE
+% ============================================================
+\begin{titlepage}
+    \centering
+    \vspace*{1.2cm}
+    {\Huge \textbf{Standing Waves on a String} \par}
+    \vspace{0.3cm}
+    {\Large Measuring Wave Speed - Lab 4 \par}
+    \vspace{0.6cm}
+    \rule{\textwidth}{0.4pt}
+    \vspace{0.5cm}
+
+    {\large Sean Rockwitz, Brandon Salinas, Erick Puli, Abhiraj Singh \par}
+    \vspace{0.2cm}
+    {\large \textit{11 February, 2026} \par}
+    {\large \textit{PHYS 180, Dr.\ Ray Sameshima} \par}
+    {\large \textit{New York Institute of Technology} \par}
+
+    \vspace{0.8cm}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{IMG_3431.jpg}
+        \caption*{\textbf{Figure 1.} \textit{Standing wave theory and speed formulae on the board during lab.}}
+    \end{figure}
+
+\end{titlepage}
+
+% ---- 1. LEARNING OBJECTIVES ----
+\section{Learning Objectives}
+
+\begin{enumerate}
+    \item Measure wave speed along a string by creating standing waves at different frequencies.
+    \item Use a sine wave generator to drive two strings (green and orange) at various frequencies.
+    \item Identify resonant modes: the frequencies where the string vibrates in a clean, stable pattern with clear nodes and antinodes.
+    \item Compute wave speed from resonant frequencies and compare with the theoretical value $V = \sqrt{F_T/\mu}$ (tension and linear mass density).
+    \item Verify that the wave equation predicts wave speed correctly by comparing measured and theoretical speeds.
+\end{enumerate}
+
+\textbf{Lab roles:} Sean recorded nodes; Abhiraj operated the sine wave generator; Erick recorded the data in his spreadsheet; Brandon assisted throughout.
+
+% ---- 2. MAIN CONCEPTS ----
+\section{Main Concepts and Formulae}
+
+Standing waves on a string fixed at both ends form when the string is driven at certain frequencies: forward and reflected waves combine to give nodes (points that stay still) and antinodes (points that move the most).
+
+\subsection{Wave Speed on a String}
+
+Wave speed depends on tension $F_T$ and linear mass density $\mu = m/L$. The wave equation gives
+
+\begin{equation}
+    \mu \frac{\partial^2 y}{\partial t^2} = F_T \frac{\partial^2 y}{\partial x^2}
+\end{equation}
+
+The wave travels at a speed given by:
+
+\begin{equation}
+    |v|^2 = \frac{F_T}{\mu} \quad \implies \quad |v| = \sqrt{\frac{F_T}{\mu}}
+\end{equation}
+
+with $F_T = mg$ from the hanging mass.
+
+\subsection{Resonant Frequencies and Standing Wave Modes}
+
+For the $n$-th mode, $n$ half-wavelengths fit in length $L$, so
+
+\begin{equation}
+    \lambda_n = \frac{2L}{n}, \quad n = 1, 2, 3, \ldots
+\end{equation}
+
+Since speed equals frequency times wavelength, the wave speed is:
+
+\begin{equation}
+    |v_n| = f_n \cdot \lambda_n = f_n \cdot \frac{2L}{n}
+\end{equation}
+
+So $|v_n| = f_n \lambda_n$ is the same $V$ for all modes; plotting $f_n$ vs.\ $n$ gives a line with slope $V/(2L)$.
+
+% ---- 3. PROCEDURE ----
+\section{Procedure}
+
+\begin{enumerate}
+    \item \textbf{Set up the apparatus.}
+    \begin{itemize}
+        \item Attach the string at one end to the sine wave generator (driven end), run it over a pulley, and hang a mass from the other end so that the tension is $F_T = mg$.
+        \item Adjust the generator frequency to drive the string. Measure the effective vibrating length from the generator end to the pulley. We used $L_{\text{eff}} = 2.352$ m for both strings.
+    \end{itemize}
+
+    \item \textbf{Choose the strings to test.}
+    \begin{itemize}
+        \item \textbf{Green string:} Total length $= 2.982$ m, string mass $= 0.00280$ kg, hanging mass $= 0.500$ kg ($F_T = 4.91$ N).
+        \item \textbf{Orange string:} Total length $= 3.01$ m, string mass $= 0.01803$ kg, hanging mass $= 1.000$ kg ($F_T = 9.81$ N).
+    \end{itemize}
+
+    \item \textbf{Find resonant modes for each string.} With Abhiraj adjusting the sine wave generator, increase the frequency until a clean standing wave appears; Sean counted nodes while Erick recorded $f_n$ and $n$ in the spreadsheet. Repeat for as many modes as possible ($n = 2$ up to $n = 7$ or $8$). Cross-check with class data on the board; $\mu_{\text{avg}} = 9.52 \times 10^{-4}$ kg/m was reported for the green string.
+\end{enumerate}
+
+% ---- 4. EXPERIMENTAL DATA ----
+\section{Experimental Data and Graphical Analysis}
+
+\subsection{Green String}
+
+\begin{table}[H]
+    \centering
+    \caption{Resonant frequency and wave speed data for the green string. Hanging mass $= 0.500$ kg, $L_{\text{eff}} = 2.352$ m.}
+    \label{tab:green}
+    \begin{tabular}{cccc}
+        \toprule
+        $n$ (nodes) & $f_n$ (Hz) & $\lambda_n$ (m) & $V_n$ (m/s) \\
+        \midrule
+        2 & 33.6 & 2.352 & 79.0 \\
+        3 & 50.6 & 1.568 & 79.3 \\
+        4 & 62.5 & 1.176 & 73.5 \\
+        5 & 78.7 & 0.9408 & 74.0 \\
+        6 & 94.7 & 0.7840 & 74.2 \\
+        7 & 124.4 & 0.6720 & 83.6 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig1_green_fn.pdf}
+    \caption{Green string: resonant frequency $f_n$ vs.\ number of nodes $n$. Linear fit slope $= 17.21$ Hz/node.}
+    \label{fig:green_fn}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig2_green_vn.pdf}
+    \caption{Green string: wave speed $V_n$ vs.\ number of nodes $n$. Dashed: average (77.3 m/s); dotted: theory (72.3 m/s).}
+    \label{fig:green_vn}
+\end{figure}
+
+\subsection{Orange String}
+
+\begin{table}[H]
+    \centering
+    \caption{Resonant frequency and wave speed data for the orange string. Hanging mass $= 1.000$ kg, $L_{\text{eff}} = 2.352$ m.}
+    \label{tab:orange}
+    \begin{tabular}{cccc}
+        \toprule
+        $n$ (nodes) & $f_n$ (Hz) & $\lambda_n$ (m) & $V_n$ (m/s) \\
+        \midrule
+        2 & 17.4 & 2.352 & 40.9 \\
+        3 & 26.5 & 1.568 & 41.6 \\
+        4 & 37.4 & 1.176 & 44.0 \\
+        5 & 47.6 & 0.9408 & 44.8 \\
+        6 & 53.6 & 0.7840 & 42.0 \\
+        8 & 71.6 & 0.5880 & 42.1 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig3_orange_fn.pdf}
+    \caption{Orange string: resonant frequency $f_n$ vs.\ number of nodes $n$. Linear fit slope $= 9.02$ Hz/node.}
+    \label{fig:orange_fn}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig4_orange_vn.pdf}
+    \caption{Orange string: wave speed $V_n$ vs.\ number of nodes $n$. Dashed: average (42.6 m/s); dotted: theory (40.5 m/s).}
+    \label{fig:orange_vn}
+\end{figure}
+
+\subsection{Combined Overview}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{fig5_combined.pdf}
+    \caption{Combined 2$\times$2 plot: frequency and wave speed results for both strings.}
+    \label{fig:combined}
+\end{figure}
+
+% ---- SUMMARY TABLE ----
+\subsection{Summary of Results}
+
+Table~\ref{tab:summary} compares wave speed from standing-wave modes (Method 1) and from $V = \sqrt{F_T/\mu}$ (Method 2).
+
+\begin{table}[H]
+    \centering
+    \caption{Wave speed comparison (m/s). Method 1: from modes; Method 2: $V = \sqrt{F_T/\mu}$.}
+    \label{tab:summary}
+    \begin{tabular}{@{} l c c c c @{}}
+        \toprule
+        \textbf{String} & \textbf{Method 1 (m/s)} & \textbf{Method 2 (m/s)} & \textbf{$\Delta V$ (m/s)} & \textbf{\% diff.} \\
+        \midrule
+        Green  & $77.3 \pm 3.5$ & $72.3 \pm 0.1$ & $5.0 \pm 3.5$ & $6.9 \pm 4.8$ \\
+        Orange & $42.6 \pm 1.2$ & $40.5 \pm 0.1$ & $2.1 \pm 1.2$ & $5.2 \pm 3.0$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Input parameters for each string.}
+    \label{tab:summary_params}
+    \begin{tabular}{@{} l c c @{}}
+        \toprule
+        \textbf{Parameter} & \textbf{Green} & \textbf{Orange} \\
+        \midrule
+        $m$ (kg) & 0.00280 & 0.01803 \\
+        $L$ (m) & 2.982 & 3.01 \\
+        $L_{\text{eff}}$ (m) & 2.352 & 2.352 \\
+        $m_h$ (kg) & 0.500 & 1.000 \\
+        $\mu$ (kg/m) & $(9.39 \pm 0.03) \times 10^{-4}$ & $(5.99 \pm 0.02) \times 10^{-3}$ \\
+        $F_T$ (N) & $4.91 \pm 0.01$ & $9.81 \pm 0.01$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% ---- 5. CALCULATION AND ERROR ANALYSIS ----
+\section{Calculation and Error Analysis}
+
+Uncertainties are propagated following NIST SP 811 \cite{nist811}. Data are in Tables~\ref{tab:green} and~\ref{tab:orange}.
+
+\subsection{Method 1: Wave Speed from Standing Wave Modes}
+
+For the $n$-th mode, the wavelength is
+\begin{equation}
+    \lambda_n = \frac{2L_{\text{eff}}}{n}, \quad L_{\text{eff}} = 2.352\;\text{m}.
+\end{equation}
+The wave speed for that mode is (formula 2.2)
+\begin{equation}
+    |v_n| = f_n \cdot \lambda_n = f_n \cdot \frac{2L_{\text{eff}}}{n}.
+\end{equation}
+The average speed over $N$ measured modes is
+\begin{equation}
+    \overline{V}_{\text{exp}} = \frac{1}{N} \sum_{i=1}^{N} V_i.
+\end{equation}
+The standard deviation of the $V_i$ gives the uncertainty:
+\begin{equation}
+    \sigma_V = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (V_i - \overline{V})^2}.
+\end{equation}
+From Tables~\ref{tab:green} and~\ref{tab:orange}: $\overline{V}_{\text{green}} = 77.3 \pm 3.5$ m/s and $\overline{V}_{\text{orange}} = 42.6 \pm 1.2$ m/s.
+
+\subsection{Method 2: Wave Speed from Tension and Linear Density}
+
+The tension is the weight of the hanging mass:
+\begin{equation}
+    F_T = m_h g.
+\end{equation}
+The linear mass density is
+\begin{equation}
+    \mu = \frac{m_{\text{string}}}{L_{\text{string}}}.
+\end{equation}
+The theoretical wave speed (formula 9.35) is
+\begin{equation}
+    V_{\text{theory}} = \sqrt{\frac{F_T}{\mu}}.
+\end{equation}
+With uncertainty propagation: $V_{\text{theory,green}} = 72.3 \pm 0.1$ m/s and $V_{\text{theory,orange}} = 40.5 \pm 0.1$ m/s.
+
+\subsection{Comparison of the Two Methods}
+
+The difference between methods is
+\begin{equation}
+    \Delta V = \left| \overline{V}_{\text{exp}} - V_{\text{theory}} \right|.
+\end{equation}
+The uncertainty in $\Delta V$ is
+\begin{equation}
+    \delta(\Delta V) = \sqrt{(\delta\overline{V}_{\text{exp}})^2 + (\delta V_{\text{theory}})^2}.
+\end{equation}
+The percent difference is
+\begin{equation}
+    \%\,\text{diff} = \frac{\Delta V}{V_{\text{theory}}} \times 100\%.
+\end{equation}
+Results: Green $\Delta V = 5.0 \pm 3.5$ m/s ($6.9 \pm 4.8\%$); Orange $\Delta V = 2.1 \pm 1.2$ m/s ($5.2 \pm 3.0\%$). Both agree within uncertainty.
+
+\subsection{Sources of Error}
+
+Main contributions: (1)~Method 1: subjective choice of ``best'' resonant frequency when tuning the generator. (2)~Effective length: node positions at the driven end and pulley are not sharply defined. (3)~The generator end moves slightly, so it is not a perfect node. The orange string showed less scatter than the green, likely because the heavier string gave clearer standing patterns to tune.
+
+% ============================================================
+% CONCLUSION
+% ============================================================
+\section*{Conclusion}
+
+Measured wave speeds agreed with $V = \sqrt{F_T/\mu}$ within uncertainty (green $\sim$6.9\% difference, orange $\sim$5.2\%). The $f_n$ vs.\ $n$ plots were linear as predicted, and $V_n$ showed no trend with mode number, consistent with a constant wave speed. The orange string gave tighter results than the green, likely due to clearer standing patterns and higher tension. The results support the standing-wave model and the wave-speed formula.
+
+\vspace{0.5cm}
+\noindent LaTeX source: \href{https://github.com/SRock44/physics-latex}{github.com/SRock44/physics-latex} (file \texttt{lab4/lab4.tex}).
+
+\begin{thebibliography}{9}
+\bibitem{nist811}
+Taylor, B. N., and Kuyatt, C. E. (2008). \textit{Guidelines for Evaluating and Expressing the Uncertainty of NIST Measurement Results}. NIST Special Publication 811, 2008 Edition. National Institute of Standards and Technology, Gaithersburg, MD. Available at: \url{https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf}
+\end{thebibliography}
+
+\end{document}
