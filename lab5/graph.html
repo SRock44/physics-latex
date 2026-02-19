@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dipole Electric Field Mapping</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fff; display: flex; flex-direction: column; align-items: center; padding: 20px; font-family: 'Courier New', monospace; }
+  h1 { font-size: 1rem; color: #111; margin-bottom: 4px; }
+  .sub { font-size: 0.75rem; color: #555; margin-bottom: 10px; }
+  canvas { background: #fff; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; font-size: 0.72rem; color: #222; }
+  .leg-item { display: flex; align-items: center; gap: 5px; }
+  .leg-swatch { width: 20px; height: 3px; display: inline-block; }
+</style>
+</head>
+<body>
+<h1>Dipole Configuration — Equipotential Lines</h1>
+<p class="sub">2.4V · Electrodes at (10,10) &amp; (18,10) · Axis of symmetry: x = 14</p>
+<canvas id="c"></canvas>
+<div class="legend" id="legend"></div>
+<script>
+const C = document.getElementById('c');
+const ctx = C.getContext('2d');
+const xMax = 26, yMax = 20, cell = 38;
+const mg = { t: 20, r: 20, b: 50, l: 50 };
+C.width = mg.l + mg.r + xMax * cell;
+C.height = mg.t + mg.b + yMax * cell;
+function px(v) { return mg.l + v * cell; }
+function py(v) { return mg.t + (yMax - v) * cell; }
+
+// Grid
+ctx.strokeStyle = '#bbb'; ctx.lineWidth = 0.4;
+for (let x = 0; x <= xMax; x++) for (let y = 0; y <= yMax; y++) {
+  const cx = px(x), cy = py(y);
+  ctx.beginPath(); ctx.moveTo(cx-3,cy); ctx.lineTo(cx+3,cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx,cy-3); ctx.lineTo(cx,cy+3); ctx.stroke();
+}
+ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
+ctx.strokeRect(mg.l, mg.t, xMax*cell, yMax*cell);
+ctx.fillStyle = '#000'; ctx.font = 'bold 12px Courier New';
+ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+for (let x = 0; x <= xMax; x += 2) ctx.fillText(x, px(x), mg.t + yMax*cell + 8);
+ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+for (let y = 0; y <= yMax; y += 2) ctx.fillText(y, mg.l - 10, py(y));
+
+// x=14 vertical line
+ctx.strokeStyle = '#000'; ctx.lineWidth = 1.5;
+ctx.beginPath(); ctx.moveTo(px(14), py(0)); ctx.lineTo(px(14), py(20)); ctx.stroke();
+
+// Spline
+function spline(pts) {
+  const p = pts.map(([x,y]) => [px(x), py(y)]);
+  if (p.length < 2) return;
+  ctx.beginPath(); ctx.moveTo(p[0][0], p[0][1]);
+  for (let i = 0; i < p.length - 1; i++) {
+    const p0 = p[Math.max(0,i-1)], p1 = p[i], p2 = p[i+1], p3 = p[Math.min(p.length-1,i+2)];
+    const t = 15;
+    ctx.bezierCurveTo(
+      p1[0]+(p2[0]-p0[0])/t, p1[1]+(p2[1]-p0[1])/t,
+      p2[0]-(p3[0]-p1[0])/t, p2[1]-(p3[1]-p1[1])/t,
+      p2[0], p2[1]);
+  }
+}
+
+// Marker functions
+const markerFns = {
+  star(cx,cy,col) {
+    ctx.strokeStyle=col; ctx.lineWidth=1.3;
+    for(let i=0;i<6;i++){const a=i*Math.PI/3;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*5,cy+Math.sin(a)*5);ctx.stroke();}
+  },
+  fdot(cx,cy,col) { ctx.fillStyle=col;ctx.beginPath();ctx.arc(cx,cy,2.5,0,Math.PI*2);ctx.fill(); },
+  x(cx,cy,col) { ctx.strokeStyle=col;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(cx-4,cy-4);ctx.lineTo(cx+4,cy+4);ctx.stroke();ctx.beginPath();ctx.moveTo(cx+4,cy-4);ctx.lineTo(cx-4,cy+4);ctx.stroke(); },
+  sq(cx,cy,col) { ctx.strokeStyle=col;ctx.lineWidth=1.3;ctx.strokeRect(cx-3.5,cy-3.5,7,7); },
+  odot(cx,cy,col) { ctx.strokeStyle=col;ctx.lineWidth=1.3;ctx.beginPath();ctx.arc(cx,cy,4,0,Math.PI*2);ctx.stroke(); },
+  tri(cx,cy,col) { ctx.strokeStyle=col;ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(cx,cy-5);ctx.lineTo(cx-4.5,cy+3);ctx.lineTo(cx+4.5,cy+3);ctx.closePath();ctx.stroke(); },
+};
+
+// Curve data
+const curves = [
+  {left:[[0,0],[2,2],[4.5,4],[8.5,6],[11,8],[11.5,10],[11,12],[8.5,14],[4.5,16],[2,18],[0,20]],right:[[26,18],[23.5,16],[19.5,14],[17,12],[16.5,10],[17,8],[19.5,6],[23.5,4],[26,2]],color:'#e53935',marker:'star',label:"✱  Equipotential 1 (outermost)"},
+  {left:[[2,0],[4,2],[6.1,4],[9.4,6],[11.5,8],[11.9,10],[11.5,12],[9.4,14],[6.1,16],[4,18],[2,20]],right:[[26,20],[24,18],[21.9,16],[18.6,14],[16.5,12],[16.1,10],[16.5,8],[18.6,6],[21.9,4],[24,2],[26,0]],color:'#1e88e5',marker:'fdot',label:"●  Equipotential 2"},
+  {left:[[4,0],[6,2],[7.7,4],[10.3,6],[12,8],[12.3,10],[12,12],[10.3,14],[7.7,16],[6,18],[4,20]],right:[[24,20],[22,18],[20.3,16],[17.7,14],[16,12],[15.7,10],[16,8],[17.7,6],[20.3,4],[22,2],[24,0]],color:'#43a047',marker:'x',label:"×  Equipotential 3"},
+  {left:[[6,0],[8,2],[9.2,4],[11.2,6],[12.5,8],[12.8,10],[12.5,12],[11.2,14],[9.2,16],[8,18],[6,20]],right:[[22,20],[20,18],[18.8,16],[16.8,14],[15.5,12],[15.2,10],[15.5,8],[16.8,6],[18.8,4],[20,2],[22,0]],color:'#f4a100',marker:'sq',label:"□  Equipotential 4"},
+  {left:[[8,0],[10,2],[10.8,4],[12.2,6],[13,8],[13.2,10],[13,12],[12.2,14],[10.8,16],[10,18],[8,20]],right:[[20,20],[18,18],[17.2,16],[15.8,14],[15,12],[14.8,10],[15,8],[15.8,6],[17.2,4],[18,2],[20,0]],color:'#8e24aa',marker:'odot',label:"○  Equipotential 5"},
+  {left:[[10,0],[12,2],[12.4,4],[13.1,6],[13.5,8],[13.6,10],[13.5,12],[13.1,14],[12.4,16],[12,18],[10,20]],right:[[18,20],[16,18],[15.6,16],[14.9,14],[14.5,12],[14.4,10],[14.5,8],[14.9,6],[15.6,4],[16,2],[18,0]],color:'#00897b',marker:'tri',label:"△  Equipotential 6 (innermost)"},
+];
+
+// Draw
+curves.forEach(({left, right, color, marker}) => {
+  // Left spline
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.setLineDash([7,4]);
+  spline(left); ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+  // Right spline (same color)
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.setLineDash([7,4]);
+  spline(right); ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+  // Markers
+  left.forEach(([x,y]) => markerFns[marker](px(x), py(y), color));
+  right.forEach(([x,y]) => markerFns[marker](px(x), py(y), color));
+});
+
+// × at x=14 field line
+for (let y = 0; y <= 20; y += 2) {
+  markerFns.x(px(14), py(y), '#000');
+}
+
+// Legend
+const leg = document.getElementById('legend');
+curves.forEach(({color, label}) => {
+  const d = document.createElement('div');
+  d.className = 'leg-item';
+  d.innerHTML = `<span class="leg-swatch" style="background:${color}"></span>${label}`;
+  leg.appendChild(d);
+});
+// Add field line to legend
+const fl = document.createElement('div');
+fl.className = 'leg-item';
+fl.innerHTML = '<span class="leg-swatch" style="background:#000"></span>×  Field Line (x = 14)';
+leg.appendChild(fl);
+</script>
+</body>
+</html>
